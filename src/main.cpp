@@ -14,22 +14,27 @@ void setup() {
   pinMode(REED2, INPUT);
   //Serial.begin(9600);
   lcd.begin(16, 2);
-  lcd.print("Manual mode");
+  lcd.print("Manual operation");
+  lcd.setCursor(0,1);
+  lcd.print("required");
   timer = millis();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(millis()-timer > 100){ // Only every 10 ms
+  if(millis()-timer > 100){ // Only every 100 ms
     timer = millis();
     if(digitalRead(REED1)&&digitalRead(REED2)){
-      lcd.clear();
+      lcd.clear(); // Maybe we don't need clear
       lcd.print("Deluge started");
       lcd.setCursor(0,1);
       lcd.print("code: 392");
     }
     else{
-      //lcd.print("Manual mode");
+      lcd.clear(); // Maybe we don't need clear
+      lcd.print("Manual operation");
+      lcd.setCursor(0,1);
+      lcd.print("required"); 
     }
   }
   
